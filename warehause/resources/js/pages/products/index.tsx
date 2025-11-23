@@ -1,3 +1,4 @@
+import ProductController from '@/actions/App/Http/Controllers/ProductController';
 import { Button } from '@/components/ui/button';
 import {
     Table,
@@ -11,11 +12,10 @@ import {
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
-
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Products',
-        href: '/products',
+        href: ProductController.index().url,
     },
 ];
 
@@ -31,7 +31,7 @@ export default function Index({ products }: { products: Product[] }) {
     const { processing, delete: destroy } = useForm();
     const handleDelete = (id: number) => {
         if (confirm('seguro que deseas eliminar este producto')) {
-            destroy(`products/${id}`);
+            destroy(ProductController.destroy(id).url);
         }
     };
     return (
@@ -39,7 +39,7 @@ export default function Index({ products }: { products: Product[] }) {
             <Head title="Products | List" />
 
             <div className="m-4">
-                <Link href="/products/create">
+                <Link href={ProductController.create().url}>
                     <Button className="mb-4">Create Product</Button>
                 </Link>
                 {products.length > 0 && (
@@ -77,7 +77,11 @@ export default function Index({ products }: { products: Product[] }) {
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <Link
-                                            href={`/products/edit/${product.id}`}
+                                            href={
+                                                ProductController.edit(
+                                                    product.id,
+                                                ).url
+                                            }
                                         >
                                             <Button className="bg-slate-500 hover:bg-slate-700">
                                                 Edit

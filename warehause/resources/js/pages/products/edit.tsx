@@ -1,3 +1,4 @@
+import { update } from '@/actions/App/Http/Controllers/ProductController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -18,7 +19,6 @@ interface Product {
     price: number;
     description: string;
 }
-
 export default function Edit({ product }: { product: Product }) {
     const { data, setData, put, processing, errors } = useForm({
         name: product.name,
@@ -28,7 +28,7 @@ export default function Edit({ product }: { product: Product }) {
     });
     const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        put(`/products/${product.id}`);
+        put(update(product.id).url);
     };
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

@@ -1,3 +1,4 @@
+import ProductController from '@/actions/App/Http/Controllers/ProductController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -7,7 +8,7 @@ import { Head, useForm } from '@inertiajs/react';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Create Product',
-        href: '/products/create',
+        href: ProductController.create().url,
     },
 ];
 
@@ -20,7 +21,7 @@ export default function Create() {
     });
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post('/products');
+        post(ProductController.store().url);
     };
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
