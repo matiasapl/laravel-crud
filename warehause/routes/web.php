@@ -23,5 +23,6 @@ Route::post('products', [ProductController::class, 'store'])->name('products.sto
 Route::get('products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('products/show/{product}', [ProductController::class, 'show'])->name('products.show');
 
 require __DIR__.'/settings.php';

@@ -10,6 +10,8 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
+import { FaEye } from 'react-icons/fa6';
+
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
 const breadcrumbs: BreadcrumbItem[] = [
@@ -40,14 +42,18 @@ export default function Index({ products }: { products: Product[] }) {
 
             <div className="m-4">
                 <Link href={ProductController.create().url}>
-                    <Button className="mb-4">Create Product</Button>
+                    <Button className="mb-4 bg-green-700 text-white hover:bg-green-900">
+                        Create Product
+                    </Button>
                 </Link>
                 {products.length > 0 && (
                     <Table>
-                        <TableCaption>Lista de Productos</TableCaption>
+                        <TableCaption>List a Products</TableCaption>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[100px]">ID</TableHead>
+                                <TableHead className="w-[100px]">
+                                    View Product
+                                </TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead>Description</TableHead>
                                 <TableHead className="text-right">
@@ -64,11 +70,28 @@ export default function Index({ products }: { products: Product[] }) {
                         <TableBody>
                             {products.map((product) => (
                                 <TableRow key={product.id}>
-                                    <TableCell className="font-medium">
-                                        {product.id}
-                                    </TableCell>
+                                    <TableHead className="w-[100px]">
+                                        <Link
+                                            href={
+                                                ProductController.show(
+                                                    product.id,
+                                                ).url
+                                            }
+                                        >
+                                            <Button className="mx-2 bg-orange-500 hover:bg-orange-700">
+                                                <FaEye />
+                                            </Button>
+                                        </Link>
+                                    </TableHead>
                                     <TableCell>{product.name}</TableCell>
-                                    <TableCell>{product.description}</TableCell>
+                                    <TableCell>
+                                        {product.description.length > 100
+                                            ? product.description.slice(
+                                                  0,
+                                                  100,
+                                              ) + '...'
+                                            : product.description}
+                                    </TableCell>
                                     <TableCell className="text-right">
                                         {product.stock}
                                     </TableCell>
@@ -83,7 +106,7 @@ export default function Index({ products }: { products: Product[] }) {
                                                 ).url
                                             }
                                         >
-                                            <Button className="bg-slate-500 hover:bg-slate-700">
+                                            <Button className="bg-orange-400 hover:bg-orange-600">
                                                 Edit
                                             </Button>
                                         </Link>

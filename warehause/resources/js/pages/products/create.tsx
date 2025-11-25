@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Create Product',
@@ -93,9 +93,19 @@ export default function Create() {
                             </div>
                         )}
                     </div>
-                    <Button disabled={processing} type="submit">
+                    <Button
+                        disabled={processing}
+                        type="submit"
+                        className="bg-green-700 text-white hover:bg-green-900"
+                    >
                         Create Product
                     </Button>
+
+                    <Link href={ProductController.index().url}>
+                        <Button className="text-whitehover:bg-red-700 mx-2 bg-red-500 hover:bg-red-700">
+                            Cancel
+                        </Button>
+                    </Link>
                 </form>
             </div>
         </AppLayout>

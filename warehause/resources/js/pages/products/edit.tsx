@@ -1,10 +1,13 @@
-import { update } from '@/actions/App/Http/Controllers/ProductController';
+import {
+    index,
+    update,
+} from '@/actions/App/Http/Controllers/ProductController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Edit Product',
@@ -32,7 +35,8 @@ export default function Edit({ product }: { product: Product }) {
     };
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Products | Create" />
+            <Head title="Products | Edit" />
+
             <div className="w-8/12 p-4">
                 <form
                     method="POST"
@@ -99,14 +103,23 @@ export default function Edit({ product }: { product: Product }) {
                             }
                         />
                         {errors.description && (
-                            <div className="mt-1 flex items-center text-sm text-red-500">
+                            <div className="mx-2 mt-1 flex items-center text-sm text-red-500">
                                 {errors.description}
                             </div>
                         )}
                     </div>
-                    <Button disabled={processing} type="submit">
+                    <Button
+                        disabled={processing}
+                        type="submit"
+                        className="mx-2 bg-red-500 text-white hover:bg-red-700"
+                    >
                         Update Product
                     </Button>
+                    <Link href={index().url}>
+                        <Button className="bg-green-700 text-white hover:bg-green-900">
+                            Cancel
+                        </Button>
+                    </Link>
                 </form>
             </div>
         </AppLayout>
