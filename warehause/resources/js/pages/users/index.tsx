@@ -12,7 +12,6 @@ import {
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { FaEye } from 'react-icons/fa6';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -49,9 +48,6 @@ export default function Index({ users }: { users: Users[] }) {
                         <TableCaption>List a Users</TableCaption>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="w-[100px]">
-                                    View User
-                                </TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead className="text-right">
@@ -62,18 +58,6 @@ export default function Index({ users }: { users: Users[] }) {
                         <TableBody>
                             {users.map((users) => (
                                 <TableRow key={users.id}>
-                                    <TableHead className="w-[100px]">
-                                        <Link
-                                            href={
-                                                UserController.show(users.id)
-                                                    .url
-                                            }
-                                        >
-                                            <Button className="mx-2 bg-orange-500 hover:bg-orange-700">
-                                                <FaEye />
-                                            </Button>
-                                        </Link>
-                                    </TableHead>
                                     <TableCell>{users.name}</TableCell>
                                     <TableCell>{users.email}</TableCell>
                                     <TableCell className="text-right">
@@ -82,11 +66,7 @@ export default function Index({ users }: { users: Users[] }) {
                                                 UserController.edit(users.id)
                                                     .url
                                             }
-                                        >
-                                            <Button className="bg-orange-400 hover:bg-orange-600">
-                                                Edit
-                                            </Button>
-                                        </Link>
+                                        ></Link>
                                         <Button
                                             className="mx-2 bg-red-500 hover:bg-red-700"
                                             disabled={processing}

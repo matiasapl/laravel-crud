@@ -43,19 +43,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-            return inertia('users/show', [
-            'user' => $user,
-        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $users)
     {
-        return inertia('users/edit', [
-            'user' => $user,
-        ]);
+
     }
 
     /**
@@ -63,9 +58,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $validated = $request->validated();
-        $product->update($validated);
-        return redirect()->route('users.index');
+
     }
 
     /**
