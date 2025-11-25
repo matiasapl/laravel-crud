@@ -1,4 +1,4 @@
-import UserController from '@/actions/UserController';
+import UserController from '@/actions/App/Http/Controllers/UserController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import AppLayout from '@/layouts/app-layout';
@@ -13,9 +13,9 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
-        name: 'name',
-        email: 'email',
-        password: 'password',
+        name: '',
+        email: '',
+        password: '',
     });
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -81,7 +81,7 @@ export default function Create() {
                         type="submit"
                         className="bg-green-700 text-white hover:bg-green-900"
                     >
-                        Create Product
+                        Create User
                     </Button>
 
                     <Link href={UserController.index().url}>

@@ -75,9 +75,7 @@ export default function Index({ users }: { users: Users[] }) {
                                         </Link>
                                     </TableHead>
                                     <TableCell>{users.name}</TableCell>
-                                    <TableCell className="">
-                                        {users.email}
-                                    </TableCell>
+                                    <TableCell>{users.email}</TableCell>
                                     <TableCell className="text-right">
                                         <Link
                                             href={
