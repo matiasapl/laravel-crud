@@ -48,7 +48,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $users)
+    public function edit(User $user)
     {
 
     }

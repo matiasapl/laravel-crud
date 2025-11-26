@@ -61,12 +61,6 @@ export default function Index({ users }: { users: Users[] }) {
                                     <TableCell>{users.name}</TableCell>
                                     <TableCell>{users.email}</TableCell>
                                     <TableCell className="text-right">
-                                        <Link
-                                            href={
-                                                UserController.edit(users.id)
-                                                    .url
-                                            }
-                                        ></Link>
                                         <Button
                                             className="mx-2 bg-red-500 hover:bg-red-700"
                                             disabled={processing}
